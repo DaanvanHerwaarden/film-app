@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_login"
+    android:id="@+id/activity_register"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="8dp"
     android:background="#4F8FF7"
-    tools:context="nl.avans.film_app.MainActivity">
+    tools:context="nl.avans.film_app.RegisterActivity">
 
     <View
         android:layout_width="match_parent"
@@ -27,7 +27,23 @@
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/activity_login_username"
+        android:id="@+id/activity_register_username"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fontFamily="Verdana"
+        android:gravity="fill_vertical"
+        android:text="Email"
+        android:textSize="18dp"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:id="@+id/activity_register_email"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"/>
@@ -43,34 +59,22 @@
         android:textStyle="bold"/>
 
     <EditText
-        android:id="@+id/activity_login_password"
+        android:id="@+id/activity_register_password"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"/>
 
     <Button
-        android:id="@+id/activity_login_button"
+        android:id="@+id/activity_register_button"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:text="Login" />
-
-    <TextView
-        android:id="@+id/activity_login_register"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="fill_vertical"
-        android:text="Register"
-        android:textAlignment="center"
-        android:textColor="#FFF"
-        android:textSize="20dp"
-        android:textStyle="bold"/>
+        android:text="Register" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="4">
+        android:layout_weight="3">
         //Filler
     </View>
 </LinearLayout>
