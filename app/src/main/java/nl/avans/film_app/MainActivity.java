@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                     JSONObject jsonBody = new JSONObject(body);
                     JsonObjectRequest jsObjRequest = new JsonObjectRequest(
                             Request.Method.POST,
-                            Config.SERVER_ADDRESS + ":3000/api/v1/login",
+                            Config.SERVER_ADDRESS + "/api/v1/login",
                             jsonBody,
                             new com.android.volley.Response.Listener<JSONObject>() {
                                 @Override
@@ -77,7 +77,9 @@ public class MainActivity extends AppCompatActivity {
                             }, new com.android.volley.Response.ErrorListener() {
                                 @Override
                                 public void onErrorResponse(VolleyError error) {
+
                                     error.printStackTrace();
+                                    Log.i("test2","test3");
                                 }
                             }) {
                         public Map<String, String> getHeaders() throws AuthFailureError {
@@ -103,4 +105,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 }

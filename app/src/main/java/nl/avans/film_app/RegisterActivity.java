@@ -1,6 +1,7 @@
 package nl.avans.film_app;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -45,7 +46,7 @@ public class RegisterActivity extends AppCompatActivity {
                     JSONObject jsonBody = new JSONObject(body);
                     JsonObjectRequest jsObjRequest = new JsonObjectRequest(
                             Request.Method.POST,
-                            Config.SERVER_ADDRESS + ":3000/api/v1/register",
+                            Config.SERVER_ADDRESS + "/api/v1/register",
                             jsonBody,
                             new com.android.volley.Response.Listener<JSONObject>() {
                                 @Override
@@ -72,6 +73,11 @@ public class RegisterActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
+
         });
+
+    }
+    public void onClick(View v) {
+        startActivity(new Intent(getApplicationContext(), MainActivity.class));
     }
 }
