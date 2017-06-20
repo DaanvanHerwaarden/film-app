@@ -17,33 +17,32 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class FilmRequest {
+public class RentalRequest {
 
     private Context context;
+    private Film film;
     public final String TAG = this.getClass().getSimpleName();
 
     // De aanroepende class implementeert deze interface
-    private FilmListener listener;
+    private RentalListener listener;
 
-    public FilmRequest(Context context, FilmListener listener) {
+    public RentalRequest(Context context, RentalListener listener, Film film) {
         this.context = context;
+        this.film = film;
         this.listener = listener;
     }
 
     //Verstuur een GET request om alle films op te halen
-    public void handleGetFilmRequests() {
-        Log.i(TAG, "handleGetFilmRequests");
-
+    public void handleGetRentalRequests() {
         // Haal het token uit de prefs
         SharedPreferences sharedPref = context.getSharedPreferences(
                 context.getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         final String token = sharedPref.getString(context.getString(R.string.saved_token), "dummy default token");
-        if(token != null && !token.equals("dummy default token")) {
 
-            Log.i(TAG, "Token gevonden, we gaan het request uitvoeren");
+        if (token != null && !token.equals("dummy default token")) {
             JsonArrayRequest jsObjRequest = new JsonArrayRequest(
                     Request.Method.GET,
-                    Config.URL_FILMS + "?count=50&offset=0",
+                    Config.URL_RENTALS + film.getFilm_id(),
                     null,
                     new Response.Listener<JSONArray>() {
                         @Override
@@ -51,9 +50,9 @@ public class FilmRequest {
                             try {
                                 for (int i = 0; i < 50; i ++) {
                                     JSONObject jsonObject = response.getJSONObject(i);
-                                    FilmMapper.mapFilmList(jsonObject);
+                                    RentalMapper.mapFilmList(jsonObject);
                                 }
-                                listener.onFilmAvailable(FilmMapper.getFilms());
+                                listener.onRentalAvailable(RentalMapper.getRentals());
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
@@ -80,14 +79,14 @@ public class FilmRequest {
     }
 
     // Callback interface - implemented by the calling class (MainActivity in our case).
-    public interface FilmListener {
-        // Callback function to return a fresh list of ToDos
-        void onFilmAvailable(ArrayList<Film> toDos);
+    public interface RentalListener {
+        // Callback function to return a fresh list of rental
+        void onRentalAvailable(ArrayList<Film> films);
 
-        // Callback function to handle a single added ToDo.
-        void onFilmsAvailable(Film todo);
+        // Callback function to handle a single added rental.
+        void onRentalAvailable(Film todo);
 
         // Callback to handle serverside API errors
-        void onFilmError(String message);
+        void onRentalError(String message);
     }
 }
