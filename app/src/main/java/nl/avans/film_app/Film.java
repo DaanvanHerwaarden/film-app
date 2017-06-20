@@ -11,6 +11,12 @@ public class Film implements Serializable {
     private int film_id, release_year,rental_duration, rental_rate, length, replacement_cost;
     private String title, description, rating, special_features, last_update;
 
+    public Film(String title, String description, String rating) {
+        this.description = description;
+        this.rating = rating;
+        this.title = title;
+    }
+
     public Film(int film_id, String title, String description, int release_year, int rental_duration , int rental_rate, int length, int replacement_cost, String rating, String special_features, String last_update) {
         this.title = title;
         this.description = description;

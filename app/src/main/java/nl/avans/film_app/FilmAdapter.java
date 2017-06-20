@@ -3,60 +3,54 @@ package nl.avans.film_app;
 /**
  * Created by Daan on 19-6-2017.
  */
-
-import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class FilmAdapter extends ArrayAdapter<Film> {
+public class FilmAdapter extends BaseAdapter {
 
-    public static final String TAG = FilmAdapter.class.getSimpleName();
-    private Context mContext;
-    private ArrayList<Film> items;
+    private ArrayList<Film> films;
+    private LayoutInflater inflater;
 
-    private static class ViewHolder {
-        TextView title, description;
-
-
+    public FilmAdapter(LayoutInflater inflater, ArrayList<Film> films) {
+        this.inflater = inflater;
+        this.films = films;
     }
 
-    public FilmAdapter(Context context, ArrayList<Film> items){
-        super(context, R.layout.beschikbare_films, items);
-        this.mContext = context;
-        this.items = items;
-        Log.d(TAG, "Consturctor called");
+    @Override
+    public int getCount() {
+        return films.size();
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return films.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return 0;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Log.d(TAG, "getView Called");
-        Film item = items.get(position);
+        Film film = (Film) getItem(position);
 
-        ViewHolder viewHolder;
-
-        if (convertView == null) {
-
-            viewHolder = new ViewHolder();
-            LayoutInflater inflater = LayoutInflater.from(mContext);
-            convertView = inflater.inflate(R.layout.beschikbare_films, parent, false);
-
-            viewHolder.title = (TextView) convertView.findViewById(R.id.title);
-            viewHolder.description = (TextView) convertView.findViewById(R.id.description) ;
-
-
-            convertView.setTag(viewHolder);
-        } else {
-            viewHolder = (ViewHolder) convertView.getTag();
+        if (convertView == null ) {
+            convertView = inflater.inflate(R.layout.film_detail, null);
         }
 
-        viewHolder.title.setText(item.getTitle());
-        viewHolder.description.setText(item.getDescription());
+        TextView title = (TextView) convertView.findViewById(R.id.title);
+        TextView description = (TextView) convertView.findViewById(R.id.description);
+        TextView rating = (TextView) convertView.findViewById(R.id.rating);
+
+        title.setText(film.getTitle());
+        description.setText(film.getDescription());
+        rating.setText(film.getRating());
 
         return convertView;
     }

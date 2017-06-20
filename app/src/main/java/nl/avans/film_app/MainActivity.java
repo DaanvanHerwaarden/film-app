@@ -29,7 +29,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, FilmRequest.ToDoListener, View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button button;
     private EditText password, username;
@@ -39,8 +39,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public final static String FILM_RESULT = "FILMRESULT";
     public static final int MY_REQUEST_CODE = 1234;
 
-    private ListView listViewFilms;
-    private BaseAdapter filmAdapter;
     private ArrayList<Film> films = new ArrayList<>();
 
     @Override
@@ -85,18 +83,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                                         editor.putString(getString(R.string.saved_token), token);
                                         editor.commit();
 
-                                        listViewFilms = (ListView) findViewById(R.id.lijstfilms);
-                                        listViewFilms.setOnItemClickListener(this);
-
-                                        filmAdapter = new FilmAdapter(this, films);
-                                        listViewFilms.setAdapter(filmAdapter);
-
-                                        getFilm();
+                                        Log.i("Login", "Token = " + token);
 
                                         Intent intent = new Intent(getApplicationContext(), FilmActivity.class);
                                         startActivity(intent);
-
-                                        Log.i("Login", "Token = " + token);
                                     } catch (JSONException e) {
                                         e.printStackTrace();
 
@@ -135,78 +125,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     }
 
-    protected void onActivityResult(int requestCode, int resultCode, Intent pData)
-    {
-        if ( requestCode == MY_REQUEST_CODE )
-        {
-            Log.v( TAG, "onActivityResult OK" );
-            if (resultCode == Activity.RESULT_OK )
-            {
-                final Film newToDo = (Film) pData.getSerializableExtra(FILM_RESULT);
-                Log.v( TAG, "Retrieved Value newToDo is " + newToDo);
-
-                // We need to save our new ToDo
-                postFilm(newToDo);
-            }
-        }
-    }
-
-    public void onFilmAvailable(Film todo) {
-        films.add(todo);
-        filmAdapter.notifyDataSetChanged();
-    }
-
-    /**
-     * Start the activity to GET all ToDos from the server.
-     */
-    private void getFilm(){
-        FilmRequest request = new FilmRequest(getApplicationContext(), this);
-        request.handleGetFilmRequests();
-    }
-
-    /**
-     * Start the activity to POST a new ToDo to the server.
-     */
-    private void postFilm(Film film){
-        FilmRequest request = new FilmRequest(getApplicationContext(), this);
-        request.handlePostFilmRequest(film);
-    }
-
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Log.i(TAG, "Position " + position + " is geselecteerd");
-
-        Film film = films.get(position);
-        Intent intent = new Intent(getApplicationContext(), FilmActivity.class);
-        intent.putExtra(FILM_RESULT, film);
-        startActivity(intent);
-    }
-
-    @Override
-    public void onFilmAvailable(ArrayList<Film> filmArrayList) {
-        Log.i(TAG, "We hebben " + filmArrayList.size() + " items in de lijst");
-
-        films.clear();
-        for(int i = 0; i < filmArrayList.size(); i++) {
-            films.add(filmArrayList.get(i));
-        }
-        filmAdapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public void onFilmsAvailable(Film film) {
-        films.add(film);
-        filmAdapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public void onFilmError(String message) {
-        Log.e(TAG, message);
-        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void onClick(View v) {
-
-    }
+    public void onClick(View v) { }
 }

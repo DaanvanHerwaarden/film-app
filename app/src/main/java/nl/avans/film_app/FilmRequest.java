@@ -26,7 +26,7 @@ public class FilmRequest {
     public final String TAG = this.getClass().getSimpleName();
 
     // De aanroepende class implementeert deze interface.
-    private FilmRequest.ToDoListener listener;
+    private FilmListener listener;
 
     /**
      * Constructor
@@ -34,7 +34,7 @@ public class FilmRequest {
      * @param context
      * @param listener
      */
-    public FilmRequest(Context context, FilmRequest.ToDoListener listener) {
+    public FilmRequest(Context context, FilmListener listener) {
         this.context = context;
         this.listener = listener;
     }
@@ -153,7 +153,7 @@ public class FilmRequest {
     //
     // Callback interface - implemented by the calling class (MainActivity in our case).
     //
-    public interface ToDoListener {
+    public interface FilmListener {
         // Callback function to return a fresh list of ToDos
         void onFilmAvailable(ArrayList<Film> toDos);
 
