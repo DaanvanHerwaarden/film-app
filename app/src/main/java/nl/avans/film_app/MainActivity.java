@@ -1,5 +1,6 @@
 package nl.avans.film_app;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -7,9 +8,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -20,16 +25,23 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     //Adres database: 146.185.130.82
 
     private Button button;
     private EditText password, username;
     private TextView register;
+
+    public final String TAG = this.getClass().getSimpleName();
+    public final static String FILM_RESULT = "FILMRESULT";
+    public static final int MY_REQUEST_CODE = 1234;
+
+    private ArrayList<Film> films = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.i("Login", body);
 
                 try {
+
                     JSONObject jsonBody = new JSONObject(body);
                     JsonObjectRequest jsObjRequest = new JsonObjectRequest(
                             Request.Method.POST,
@@ -71,13 +84,16 @@ public class MainActivity extends AppCompatActivity {
                                         SharedPreferences.Editor editor = sharedPref.edit();
                                         editor.putString(getString(R.string.saved_token), token);
                                         editor.commit();
+
                                         Log.i("Login", "Token = " + token);
 
                                         Intent intent = new Intent(getApplicationContext(), FilmDetailActivity.class);
                                         intent.putExtra("FILM", new Film("Titel", "Test", "4 sterren", Film.FilmState.AVAILABLE));
+                                        Intent intent = new Intent(getApplicationContext(), FilmActivity.class);
                                         startActivity(intent);
                                     } catch (JSONException e) {
                                         e.printStackTrace();
+
                                     }
                                 }
                             }, new com.android.volley.Response.ErrorListener() {
@@ -110,6 +126,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
             }
         });
+
     }
 
+    @Override
+    public void onClick(View v) { }
 }

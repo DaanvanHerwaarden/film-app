@@ -19,7 +19,7 @@ public class Film implements Serializable {
         this.title = title;
     }
 
-    public Film(int film_id, String title, String description, int release_year, int language_id, int rental_duration , int rental_rate, int length, int replacement_cost, String rating, String special_features, String last_update, int original_language_id) {
+    public Film(int film_id, String title, String description, int release_year, int rental_duration , int rental_rate, int length, int replacement_cost, String rating, String special_features, String last_update) {
         this.title = title;
         this.description = description;
         this.film_id = film_id;
@@ -34,7 +34,7 @@ public class Film implements Serializable {
         this.special_features = special_features;
         this.last_update = last_update;
     }
-
+      
     public enum FilmState {
 
         AVAILABLE("Verkrijgbaar", "Huur deze film"), RESERVED("Gereserveed", "Niet beschikbaar");
@@ -73,6 +73,9 @@ public class Film implements Serializable {
     public int getLanguage_id() {return language_id;}
     public void setLanguage_id(int language_id) {this.language_id = language_id;}
 
+    public int getRelease_year() { return release_year;}
+    public void setRelease_year(int release_year) {this.release_year = release_year;}
+      
     public int getRental_duration() {return rental_duration;}
     public void setRental_duration(int rental_duration) {this.rental_duration = rental_duration;}
 
