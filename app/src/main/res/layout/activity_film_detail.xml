@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="8dp"
+    android:background="#4F8FF7"
+    tools:context="nl.avans.film_app.FilmDetailActivity">
+
+    <ImageView
+        android:id="@+id/activity_film_detail_image"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:background="@color/colorPrimary"
+        android:layout_margin="4dp">
+
+    </ImageView>
+
+    <TextView
+        android:id="@+id/activity_film_detail_title"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:fontFamily="Verdana"
+        android:text="Film titel"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/activity_film_detail_description"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:fontFamily="Verdana"
+        android:text="Beschrijving"
+        android:textSize="16dp"/>
+
+    <TextView
+        android:id="@+id/activity_film_detail_rating"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fontFamily="Verdana"
+        android:text="Rating"
+        android:textSize="16dp"/>
+
+    <TextView
+        android:id="@+id/activity_film_detail_status"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fontFamily="Verdana"
+        android:text="Status"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:textStyle="bold"/>
+
+    <Button
+        android:id="@+id/activity_film_detail_button"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:text="Huur deze film"/>
+</LinearLayout>

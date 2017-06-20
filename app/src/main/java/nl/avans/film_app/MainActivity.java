@@ -25,6 +25,8 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
+    //Adres database: 146.185.130.82
+
     private Button button;
     private EditText password, username;
     private TextView register;
@@ -70,6 +72,10 @@ public class MainActivity extends AppCompatActivity {
                                         editor.putString(getString(R.string.saved_token), token);
                                         editor.commit();
                                         Log.i("Login", "Token = " + token);
+
+                                        Intent intent = new Intent(getApplicationContext(), FilmDetailActivity.class);
+                                        intent.putExtra("FILM", new Film("Titel", "Test", "4 sterren", Film.FilmState.AVAILABLE));
+                                        startActivity(intent);
                                     } catch (JSONException e) {
                                         e.printStackTrace();
                                     }
