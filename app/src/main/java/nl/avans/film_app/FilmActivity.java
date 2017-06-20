@@ -1,8 +1,7 @@
 package nl.avans.film_app;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -10,16 +9,18 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import static nl.avans.film_app.FilmMapper.FILM_RESULT;
+import static nl.avans.film_app.MainActivity.MY_REQUEST_CODE;
+
 public class FilmActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, FilmRequest.FilmListener {
 
     private ArrayList<Film> films;
-    private Button logOut, myFilms;
     private ListView listViewFilms;
     private BaseAdapter filmAdapter;
 
@@ -30,12 +31,8 @@ public class FilmActivity extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.beschikbare_films);
 
-        this.logOut = (Button) findViewById(R.id.activity_film_list_logout);
-        this.myFilms = (Button) findViewById(R.id.activity_film_list_myfilms);
-
         films = new ArrayList<>();
-
-        new FilmRequest(getApplicationContext(), this);
+        films.add(new Film("Titel", "Hey", "Test", Film.FilmState.AVAILABLE));
 
         listViewFilms = (ListView) findViewById(R.id.lijstfilms);
         listViewFilms.setOnItemClickListener(this);
@@ -44,24 +41,10 @@ public class FilmActivity extends AppCompatActivity implements AdapterView.OnIte
         listViewFilms.setAdapter(filmAdapter);
 
         getFilm();
-
-        logOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SharedPreferences sharedPref = getApplicationContext().getSharedPreferences(
-                        getString(R.string.preference_file_key), Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPref.edit();
-                editor.remove("saved_token");
-                editor.commit();
-
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                finish();
-            }
-        });
     }
 
-    public void onFilmAvailable(Film film) {
-        films.add(film);
+    public void onFilmAvailable(Film todo) {
+        films.add(todo);
         filmAdapter.notifyDataSetChanged();
     }
 
@@ -73,6 +56,11 @@ public class FilmActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Log.i(TAG, "Position " + position + " is geselecteerd");
+
+        Film film = films.get(position);
+        Intent intent = new Intent(getApplicationContext(), FilmActivity.class);
+        intent.putExtra(FILM_RESULT, film);
+        startActivity(intent);
     }
 
     @Override
@@ -95,5 +83,23 @@ public class FilmActivity extends AppCompatActivity implements AdapterView.OnIte
     public void onFilmError(String message) {
         Log.e(TAG, message);
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+    }
+
+    private void postFilm(Film film){
+        FilmRequest request = new FilmRequest(getApplicationContext(), this);
+        request.handlePostFilmRequest(film);
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent pData) {
+        if ( requestCode == MY_REQUEST_CODE ) {
+            Log.v( TAG, "onActivityResult OK" );
+            if (resultCode == Activity.RESULT_OK) {
+                final Film newToDo = (Film) pData.getSerializableExtra(FILM_RESULT);
+                Log.v(TAG, "Retrieved Value newToDo is " + newToDo);
+
+                //Sla de film op
+                postFilm(newToDo);
+            }
+        }
     }
 }

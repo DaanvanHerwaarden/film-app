@@ -37,28 +37,13 @@ public class Film implements Serializable {
       
     public enum FilmState {
 
-        AVAILABLE("Verkrijgbaar", "Huur deze film", 0), RESERVED("Gereserveed", "Niet beschikbaar", 1);
+        AVAILABLE("Verkrijgbaar", "Huur deze film"), RESERVED("Gereserveed", "Niet beschikbaar");
 
-        private int bit;
         private String buttonText, string;
 
-        private FilmState(String string, String buttonText, int bit) {
+        private FilmState(String string, String buttonText) {
             this.string = string;
-            this.bit = bit;
             this.buttonText = buttonText;
-        }
-
-        public static FilmState fromBit(int bit) {
-            for (FilmState state : values()) {
-                if (state.getBit() == bit) {
-                    return state;
-                }
-            }
-            return null;
-        }
-
-        public int getBit() {
-            return bit;
         }
 
         public String getButtonText() {
