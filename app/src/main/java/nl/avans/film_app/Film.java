@@ -67,9 +67,6 @@ public class Film implements Serializable {
     public int getOriginal_language_id() { return original_language_id; }
     public void setOriginal_language_id(int original_language_id) {this.original_language_id = original_language_id;}
 
-    public int getRelease_year() { return release_year;}
-    public void setRelease_year(int release_year) {this.release_year = release_year;}
-
     public int getLanguage_id() {return language_id;}
     public void setLanguage_id(int language_id) {this.language_id = language_id;}
 

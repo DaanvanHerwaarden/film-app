@@ -87,8 +87,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                                         Log.i("Login", "Token = " + token);
 
-                                        Intent intent = new Intent(getApplicationContext(), FilmDetailActivity.class);
-                                        intent.putExtra("FILM", new Film("Titel", "Test", "4 sterren", Film.FilmState.AVAILABLE));
                                         Intent intent = new Intent(getApplicationContext(), FilmActivity.class);
                                         startActivity(intent);
                                     } catch (JSONException e) {
