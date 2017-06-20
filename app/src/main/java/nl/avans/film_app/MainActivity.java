@@ -31,6 +31,8 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
+    //Adres database: 146.185.130.82
+
     private Button button;
     private EditText password, username;
     private TextView register;

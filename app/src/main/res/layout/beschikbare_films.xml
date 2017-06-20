@@ -6,10 +6,32 @@
     android:background="#4F8FF7"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/activity_film_list_myfilms"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Mijn films"/>
+
+        <Button
+            android:id="@+id/activity_film_list_logout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Log uit"/>
+
+    </LinearLayout>
+  
     <ListView
         android:id="@+id/lijstfilms"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"/>
-
+  
 </LinearLayout>
