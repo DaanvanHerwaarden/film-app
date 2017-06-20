@@ -12,7 +12,8 @@ public class Film implements Serializable {
     private int film_id, original_language_id, release_year, language_id, rental_duration, rental_rate, length, replacement_cost;
     private String title, description, rating, special_features, last_update;
 
-    public Film(String title, String description, String rating, FilmState state) {
+    public Film(int id, String title, String description, String rating, FilmState state) {
+        this.film_id = id;
         this.description = description;
         this.rating = rating;
         this.state = state;
@@ -65,7 +66,7 @@ public class Film implements Serializable {
             return buttonText;
         }
 
-        public String toString() {
+        public String getString() {
             return string;
         }
     }
@@ -108,6 +109,10 @@ public class Film implements Serializable {
 
     public FilmState getState() {
         return state;
+    }
+
+    public void setState(FilmState state) {
+        this.state = state;
     }
 
     public String getLast_update() {return last_update;}

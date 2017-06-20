@@ -54,15 +54,19 @@ public class FilmActivity extends AppCompatActivity implements AdapterView.OnIte
                 editor.remove("saved_token");
                 editor.commit();
 
+                FilmRentalsActivity.rentals.clear();
+
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 finish();
             }
         });
-    }
 
-    public void onFilmAvailable(Film film) {
-        films.add(film);
-        filmAdapter.notifyDataSetChanged();
+        myFilms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), FilmRentalsActivity.class));
+            }
+        });
     }
 
     private void getFilm(){
@@ -73,6 +77,9 @@ public class FilmActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Log.i(TAG, "Position " + position + " is geselecteerd");
+        Intent intent = new Intent(getApplicationContext(), FilmDetailActivity.class);
+        intent.putExtra("FILM", films.get(position));
+        startActivity(intent);
     }
 
     @Override
