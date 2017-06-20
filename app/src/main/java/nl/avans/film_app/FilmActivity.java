@@ -32,7 +32,7 @@ public class FilmActivity extends AppCompatActivity implements AdapterView.OnIte
         setContentView(R.layout.beschikbare_films);
 
         films = new ArrayList<>();
-        films.add(new Film("Titel", "Hey", "Test"));
+        films.add(new Film("Titel", "Hey", "Test", Film.FilmState.AVAILABLE));
 
         listViewFilms = (ListView) findViewById(R.id.lijstfilms);
         listViewFilms.setOnItemClickListener(this);
