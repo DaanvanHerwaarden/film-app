@@ -36,7 +36,9 @@ public class FilmDetailActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Noteer de film als gehuurd
+                film.setState(FilmState.RESERVED);
+                FilmRentalsActivity.rentals.add(film);
+                button.setText("Gehuurd!");
             }
         });
     }
