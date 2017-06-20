@@ -8,20 +8,23 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="130dp"
+        android:layout_height="50dp"
         android:background="@color/colorPrimary"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/beschikbarefilms"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <Button
+            android:id="@+id/activity_film_list_myfilms"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:text="Beschikbare films"
-            android:textAlignment="center"
-            android:textColor="@android:color/white"
-            android:textSize="30dp" />
+            android:text="Mijn films"/>
+
+        <Button
+            android:id="@+id/activity_film_list_logout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Log uit"/>
 
     </LinearLayout>
   
