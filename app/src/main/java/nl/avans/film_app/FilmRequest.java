@@ -79,7 +79,7 @@ public class FilmRequest {
         }
     }
 
-    // Callback interface - implemented by the calling class (MainActivity in our case).
+    // Callback interface - implemented by the calling class
     public interface FilmListener {
         // Callback function to return a fresh list of ToDos
         void onFilmAvailable(ArrayList<Film> toDos);

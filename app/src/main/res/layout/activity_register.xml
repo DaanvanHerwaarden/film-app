@@ -9,13 +9,6 @@
     android:background="#4F8FF7"
     tools:context="nl.avans.film_app.RegisterActivity">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-        //Filler
-    </View>
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -66,8 +59,9 @@
 
     <Button
         android:id="@+id/activity_register_button"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
         android:layout_weight="1"
         android:text="Register" />
 

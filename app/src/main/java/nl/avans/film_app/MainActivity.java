@@ -70,11 +70,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 @Override
                                 public void onResponse(JSONObject response) {
                                     // Succesvol response - dat betekent dat we een geldig token hebben.
-
-                                    // We hebben nu het token. We kiezen er hier voor om
-                                    // het token in SharedPreferences op te slaan. Op die manier
-                                    // is het token tussen app-stop en -herstart beschikbaar -
-                                    // totdat het token expired.
                                     try {
                                         String token = response.getString("token");
 

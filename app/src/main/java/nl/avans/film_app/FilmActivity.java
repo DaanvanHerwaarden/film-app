@@ -37,9 +37,11 @@ public class FilmActivity extends AppCompatActivity implements AdapterView.OnIte
 
         new FilmRequest(getApplicationContext(), this);
 
+        //link adapter to listview
         listViewFilms = (ListView) findViewById(R.id.lijstfilms);
         listViewFilms.setOnItemClickListener(this);
 
+        //
         filmAdapter = new FilmAdapter(getLayoutInflater(), films);
         listViewFilms.setAdapter(filmAdapter);
 
