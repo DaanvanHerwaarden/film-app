@@ -15,12 +15,28 @@
         android:layout_weight="1"
         android:fontFamily="Verdana"
         android:gravity="fill_vertical"
-        android:text="Username"
+        android:text="Voornaam"
         android:textSize="18dp"
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/activity_register_username"
+        android:id="@+id/activity_register_first_name"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fontFamily="Verdana"
+        android:gravity="fill_vertical"
+        android:text="Achternaam"
+        android:textSize="18dp"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:id="@+id/activity_register_last_name"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"/>
@@ -41,29 +57,13 @@
         android:layout_height="0dp"
         android:layout_weight="1"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:fontFamily="Verdana"
-        android:gravity="fill_vertical"
-        android:text="Password"
-        android:textSize="18dp"
-        android:textStyle="bold"/>
-
-    <EditText
-        android:id="@+id/activity_register_password"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
-
     <Button
         android:id="@+id/activity_register_button"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_gravity="center_horizontal"
         android:layout_weight="1"
-        android:text="Register" />
+        android:text="Registreer" />
 
     <View
         android:layout_width="match_parent"
