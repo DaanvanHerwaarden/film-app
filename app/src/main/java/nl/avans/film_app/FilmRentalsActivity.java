@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class FilmRentalsActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, RentalRequest.RentalListener {
 
-    public static ArrayList<Film> rentals = new ArrayList<>();;
+    public static ArrayList<Film> rentals = new ArrayList<>();
 
     private Film film;
     private ListView listViewRentals;
@@ -37,9 +37,7 @@ public class FilmRentalsActivity extends AppCompatActivity implements AdapterVie
     @Override
     public void onRentalAvailable(ArrayList<Film> filmArrayList) {
         rentals.clear();
-        for(int i = 0; i < filmArrayList.size(); i++) {
-            rentals.add(filmArrayList.get(i));
-        }
+        rentals.addAll(filmArrayList);
         adapter.notifyDataSetChanged();
     }
 

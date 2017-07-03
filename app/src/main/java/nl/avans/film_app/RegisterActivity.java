@@ -25,21 +25,22 @@ import java.util.Map;
 public class RegisterActivity extends AppCompatActivity {
 
     private Button button;
-    private EditText email, password, username;
+    private EditText email, firstName, lastName;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        setTitle("Account registeren");
 
         this.button = (Button) findViewById(R.id.activity_register_button);
         this.email = (EditText) findViewById(R.id.activity_register_email);
-        this.password = (EditText) findViewById(R.id.activity_register_password);
-        this.username = (EditText) findViewById(R.id.activity_register_username);
+        this.firstName = (EditText) findViewById(R.id.activity_register_first_name);
+        this.lastName = (EditText) findViewById(R.id.activity_register_last_name);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String body = "{ \"first_name\": \"" + username.getText().toString() + "\", \"last_name\": \"" + password.getText().toString() + "\", \"email\": \"" + email.getText().toString() + "\" }";
+                String body = "{ \"first_name\": \"" + firstName.getText().toString() + "\", \"last_name\": \"" + lastName.getText().toString() + "\", \"email\": \"" + email.getText().toString() + "\" }";
                 Log.i("Login", body);
 
                 try {
@@ -77,6 +78,7 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
     }
+
     public void onClick(View v) {
         startActivity(new Intent(getApplicationContext(), MainActivity.class));
     }
